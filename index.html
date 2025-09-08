@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>www.gruporomana.com.mx</title>
+  <link rel="icon" type="image/png" href="./assets/logo_principal - copia.png">
+<link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libertinus+Serif:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<header class="nav">
+  <a href="./" class="nav__logo-link">
+    <li> <a href="paginaweb.html"a></li>
+    <img src="./assets/-GR- LOGO-230x89.svg" class="nav__logo">
+  </a>
+  <div class="nav__links-container">
+    <ul class="nav__list">
+      <h1><li><a href="./paginaweb.html" class="nav__link">- GRUPO ROMANA -</a></li></h1>
+    
+  </div>
+</header>
+
+
+<main class="hero">
+  <figure class="hero__figure">
+    <img src="./assets/logo_principal - copia.png" class="hero__img giro">
+    <figcaption class="hero__text">
+     <p>  - PAGINA  EN  CONSTRUCCION - </p>
+    </figcaption>
+  </figure>
+</main>
+
+<footer class="footer">
+  <h5>© GRUPO ROMANA DISEÑO E INNOVACION S.A. DE C.V. 2025</h5>
+  <h6>TODOS LOS DERECHOS RESERVADOS.</h6>
+</footer>
+
+<!-- 🔹 MODAL EMERGENTE -->
+<div class="modal-backdrop" id="siteModal">
+  <div class="modal">
+    <h2>Sitio en construcción</h2>
+    <p>Este sitio aún no está listo. Estamos trabajando en las últimas mejoras. Gracias por tu paciencia.</p>
+    <div class="modal-footer">
+      <label>
+        <input type="checkbox" id="dontShow"> No mostrar de nuevo
+      </label>
+      <div class="actions">
+        <button class="btn ghost" id="closeLater">Cerrar</button>
+        <button class="btn" id="closeNow">Entrar al sitio</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const modal = document.getElementById('siteModal');
+const dontShow = document.getElementById('dontShow');
+const closeNow = document.getElementById('closeNow');
+const closeLater = document.getElementById('closeLater');
+
+if (localStorage.getItem('hideConstructionModal') === '1') {
+  modal.style.display = 'none';
+}
+
+function closeModal(saveChoice){
+  modal.style.display = 'none';
+  if (saveChoice) {
+    localStorage.setItem('hideConstructionModal','1');
+  }
+}
+
+closeNow.addEventListener('click', ()=> closeModal(dontShow.checked));
+closeLater.addEventListener('click', ()=> closeModal(dontShow.checked));
+
+window.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') modal.style.display = 'none';
+});
+
+modal.addEventListener('click', (e)=>{
+  if (e.target === modal) modal.style.display = 'none';
+});
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --color-primario:#0047AB;
+  --color-white:#fff;
+}
+
+/* 📐 ESTRUCTURA GENERAL */
+body{
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  font-family:"Libertinus Serif", serif;
+  background: url("./assets/fondo.png") no-repeat center center fixed;
+  background-size: cover;
+}
+main{flex:1;display:flex;justify-content:center;align-items:center}
+
+/* 🔹 NAV SUPERIOR */
+.nav{
+  display:flex;
+  align-items:center;
+  height:70px;
+  padding:0 20px;
+  background: rgba(0,32,79);
+  position:relative;
+}
+
+/* Logo a la izquierda */
+.nav__logo-link{
+  display:flex;
+  align-items:center;
+}
+.nav__logo{
+  height:60px;
+  width:auto;
+}
+
+/* Contenedor de links centrado */
+.nav__links-container{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Lista de links */
+.nav__list{
+  list-style:none;
+  display:flex;
+  gap:20px;
+  margin:0;
+}
+.nav__link{
+  color:var(--color-white);
+  text-decoration:none;
+  font-weight:600;
+}
+.nav__link:hover{color:#a5d8ff}
+
+/* 🔹 HERO CENTRAL */
+.hero{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding: 40px
+}
+.hero__img{max-width:400px;width:400%;margin-bottom:20px}
+.giro{animation:girar 12s linear infinite}
+@keyframes girar{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+.hero__text{
+  font-size:1.3rem;
+  color:var(--color-primario);
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+  line-height:1.5;
+}
+
+/* 🔹 FOOTER */
+.footer{
+  background: rgba(0,32,79);
+  color:var(--color-white);
+  text-align:center;
+  padding:15px;
+}
+
+/* 🔹 MODAL */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0,);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+}
+.modal{
+  width:min(500px, 90%);
+  background:rgba(243,243,243);
+  color:#000;
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+.modal h2{margin-bottom:10px}
+.modal p{color:#333;margin-bottom:14px}
+.modal-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.actions{display:flex;gap:10px}
+.btn{
+  padding:8px 12px;
+  border-radius:6px;
+  border:0;
+  cursor:pointer;
+}
+.btn.ghost{
+  background:transparent;
+  border:1px solid #ccc;
+  color:#333;
+}
+.btn{
+  background:var(--color-primario);
+  color:var(--color-white);
+}
+
+/* 🔹 RESPONSIVE */
+@media(max-width:768px){
+  .nav{
+    flex-direction:column;
+    height:auto;
+    padding:10px;
+    gap:10px;
+  }
+  .nav__links-container{justify-content:center; width:100%;}
+  .nav__list{flex-direction:column; gap:10px; align-items:center;}
+  .hero__img{max-width:150px}
+  .hero__text{font-size:1.1rem}
+}
+</style>
+</body>
+</html>
